@@ -1,0 +1,10 @@
+FROM php:8.5-cli
+RUN apt-get update && apt-get install -y unzip git curl ca-certificates && rm -rf /var/lib/apt/lists/*
+RUN echo "memory_limit=-1"      > /usr/local/etc/php/conf.d/zz.ini \
+ && echo "opcache.enable_cli=1" >> /usr/local/etc/php/conf.d/zz.ini \
+ && echo "opcache.jit=off"      >> /usr/local/etc/php/conf.d/zz.ini
+WORKDIR /work
+ADD https://getcomposer.org/download/2.9.5/composer.phar /usr/local/bin/composer
+RUN chmod +x /usr/local/bin/composer
+COPY loop.sh /loop.sh
+RUN chmod +x /loop.sh

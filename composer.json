@@ -1,0 +1,96 @@
+{
+    "name": "composer-jit-hang/repro",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./core"
+        },
+        {
+            "type": "composer",
+            "url": "https://composer.example.invalid/internal/"
+        },
+        {
+            "packagist.org": false
+        }
+    ],
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.4",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "async-aws/async-aws-bundle": "^1.12",
+        "async-aws/ses": "^1.8",
+        "composer/composer": "^2.9.3",
+        "doctrine/doctrine-bundle": "^2.3",
+        "doctrine/orm": "^3",
+        "nelmio/security-bundle": "^3.4.2",
+        "nyholm/psr7": "*",
+        "repro/local-core": "1.0.0",
+        "predis/predis": "^2.1",
+        "recurly/recurly-client": "dev-v2-php8 as 2.12.22",
+        "seld/signal-handler": "^2.0",
+        "snc/redis-bundle": "^4.0",
+        "symfony/amazon-mailer": "7.3.*",
+        "symfony/clock": "7.3.*",
+        "symfony/console": "7.3.*",
+        "symfony/dotenv": "7.3.*",
+        "symfony/flex": "^2.0",
+        "symfony/framework-bundle": "7.3.*",
+        "symfony/google-mailer": "7.3.*",
+        "symfony/mailer": "7.3.*",
+        "symfony/monolog-bridge": "7.3.*",
+        "symfony/monolog-bundle": "^3.7",
+        "symfony/routing": "7.3.*",
+        "symfony/runtime": "7.3.*",
+        "symfony/translation": "7.3.*",
+        "symfony/yaml": "7.3.*",
+        "webmozart/assert": "^1.11"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "symfony/flex": true,
+            "symfony/runtime": true,
+            "php-http/discovery": true
+        },
+        "platform": {
+            "php": "8.4.10"
+        }
+    },
+    "replace": {
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php72": "*",
+        "easycorp/easyadmin-bundle": "*"
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "7.3.*"
+        }
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "phpstan/phpstan": "^2.0",
+        "phpstan/phpstan-deprecation-rules": "^2.0",
+        "phpstan/phpstan-doctrine": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.0",
+        "phpstan/phpstan-symfony": "^2.0",
+        "phpstan/phpstan-webmozart-assert": "^2.0",
+        "phpunit/phpunit": "^12",
+        "staabm/phpstan-dba": "^0.4.0",
+        "staabm/phpstan-todo-by": "^0.3.0",
+        "symfony/browser-kit": "7.3.*",
+        "symfony/phpunit-bridge": "7.3.*"
+    }
+}

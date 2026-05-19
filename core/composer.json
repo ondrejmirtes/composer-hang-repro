@@ -1,0 +1,9 @@
+{
+    "name": "repro/local-core",
+    "version": "1.0.0",
+    "type": "library",
+    "description": "Stub local package referenced by composer.json as a path repo. Its only role is to make composer install succeed so vendor/ gets populated (including the Symfony Flex plugin, which is required for the JIT bug to fire).",
+    "require": {
+        "php": "^8.4"
+    }
+}

@@ -1,0 +1,17 @@
+FROM php:8.5-cli
+RUN apt-get update && apt-get install -y unzip git curl ca-certificates && rm -rf /var/lib/apt/lists/*
+# Match CI's PHP ini (shivammathur/setup-php with opcache.jit=tracing)
+RUN echo "memory_limit=-1"             > /usr/local/etc/php/conf.d/zz.ini \
+ && echo "opcache.enable_cli=1"        >> /usr/local/etc/php/conf.d/zz.ini \
+ && echo "opcache.jit=tracing"         >> /usr/local/etc/php/conf.d/zz.ini \
+ && echo "opcache.jit_buffer_size=64M" >> /usr/local/etc/php/conf.d/zz.ini
+# php:8.5-cli ships opcache built in; no docker-php-ext-install needed.
+WORKDIR /work
+# Composer 2.9.5 from getcomposer.org. 2.9.7 has different opcodes and the JIT
+# does not trace the bad path the same way — it ~never reproduces on 2.9.7,
+# while 2.9.5 hangs in ~10-20% of runs. Use the user's local /work/composer.phar
+# at runtime if your CI runs a different version, by binding it into /usr/local/bin/composer.
+ADD https://getcomposer.org/download/2.9.5/composer.phar /usr/local/bin/composer
+RUN chmod +x /usr/local/bin/composer
+COPY loop.sh /loop.sh
+RUN chmod +x /loop.sh
